@@ -4,9 +4,9 @@ import { SeoInterface } from "@/interfaces/SeoInterface";
 const Seo = ({ title, description }: SeoInterface) => {
     return (
         <Head>
-            <meta name="author" content="Vagner Mengali" />
+            <meta name="author" content="Juninho pdt" />
             <meta name="keywords" content="Javascript" />
-            <link rel="fluid-icon" href="/favicon.webp" title="Vagner Mengali" />
+            <link rel="fluid-icon" href="/favicon.webp" title="Juninho pdt" />
             <link rel="icon" type="svg+xml" href="/favicon.webp" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <title>{title}</title>
@@ -19,19 +19,19 @@ const Seo = ({ title, description }: SeoInterface) => {
             <meta name="description" content={description} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
-            <meta property="og:site_name" content="Vagner Mengali" />
+            <meta property="og:site_name" content="Juninho pdt" />
             <meta property="og:type" content="website" key="ogtype" />
             <meta property="og:url" content="https://vagnermengali.com/" />
             <meta property="og:image:alt" content={description} />
             <meta property="og:image" content="/portfolio-blue.webp" />
-            <meta name="twitter:title" content="Vagner Mengali" />
-            <meta name="twitter:site" content="@vagnermengali" />
+            <meta name="twitter:title" content="Juninho pdt" />
+            <meta name="twitter:site" content="@Juninho pdt" />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:image" content="/portfolio-blue.webp" />
             <meta name="twitter:description" content={description} />
-            <meta property="al:ios:app_name" content="Vagner Mengali" />
+            <meta property="al:ios:app_name" content="Juninho pdt" />
             <meta property="al:ios:url" content="https://vagnermengali.com/" />
-            <meta property="al:android:app_name" content="Vagner Mengali" />
+            <meta property="al:android:app_name" content="Juninho pdt" />
             <meta property="al:android:url" content="https://vagnermengali.com/" />
             <link rel="canonical" href="https://vagnermengali.com/" />
             <meta name="theme-color" content="#7A90FF" />

@@ -1,26 +1,51 @@
 import {
-  RiCodeSSlashFill,
   RiVipDiamondFill,
-  RiDatabase2Fill
-} from "react-icons/ri";
+} from 'react-icons/ri'
+import {
+  FaBalanceScale,
+  FaUserShield,
+  FaUniversalAccess,
+  FaVolleyballBall,
+  FaBusAlt,
+} from 'react-icons/fa'
+
+import { FaPersonMilitaryPointing } from "react-icons/fa6";
 
 export const servicesData = [
   {
-    icon: <RiCodeSSlashFill size={72} strokeWidth={0.8} />,
-    title: "Desenvolvedor Front-End",
+    icon: <FaBalanceScale size={72} strokeWidth={0.8} color="#00054F" />,
+    title: 'Combate à desigualdade social',
     description:
-      "Trabalhei em soluções abrangentes que abrangem front-end. Posso criar aplicações robustas e integradas, proporcionando uma experiência de usuário completa",
+      'Promover políticas inclusivas que garantam oportunidades iguais para todos, buscando reduzir a desigualdade e promover uma sociedade mais justa.',
   },
   {
-    icon: <RiDatabase2Fill size={72} strokeWidth={0.8} />,
-    title: "Desenvolvedor Back-End",
+    icon: <FaUserShield size={72} strokeWidth={0.8} color="#00054F" />,
+    title: 'Defesa dos direitos do trabalhador',
     description:
-      "Minha paixão pelo desenvolvimento back-end me levou a construir bases sólidas para aplicações, garantindo desempenho, escalabilidade e segurança.",
+      'Lutar pela proteção dos direitos dos trabalhadores, assegurando melhores condições de trabalho e incentivando a valorização profissional.',
   },
   {
-    icon: <RiVipDiamondFill size={72} strokeWidth={0.8} />,
-    title: "Identidade pessoal",
+    icon: <FaUniversalAccess size={72} strokeWidth={0.8} color="#00054F" />,
+    title: 'Ampliação do acesso à educação pública',
     description:
-      "Meu entusiasmo pelo aprendizado contínuo alimenta minha busca por novos desafios e soluções inovadoras em programação.",
+      'Investir em infraestrutura e recursos para escolas públicas, garantindo que todas as crianças e jovens tenham acesso a uma educação de qualidade.',
   },
-];
+  {
+    icon: <FaVolleyballBall size={72} strokeWidth={0.8} color="#00054F" />,
+    title: 'Incentivo à prática esportiva',
+    description:
+      'Criar e fortalecer programas esportivos e espaços dedicados ao esporte, promovendo a saúde e o bem-estar da comunidade através da prática regular.',
+  },
+  {
+    icon: <FaBusAlt size={72} strokeWidth={0.8} color="#00054F" />,
+    title: 'Melhorias na mobilidade urbana',
+    description:
+      'Desenvolver soluções para otimizar o transporte público e a infraestrutura viária, facilitando a circulação e diminuindo o tempo de deslocamento na cidade.',
+  },
+  {
+    icon: <FaPersonMilitaryPointing size={72} strokeWidth={0.8} color="#00054F" />,
+    title: 'Investimento em segurança pública',
+    description:
+      'Reforçar o apoio às forças de segurança e implementar medidas para aumentar a segurança nas ruas, garantindo um ambiente mais seguro para todos os cidadãos.',
+  },
+]

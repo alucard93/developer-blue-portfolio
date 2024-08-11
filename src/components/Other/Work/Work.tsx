@@ -1,65 +1,135 @@
-import Link from "next/link";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+//@ts-nocheck
+import React, { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 
-import { Button } from "@/components/Other/UI/button";
-import ProjectCard from "@/components/Other/ProjectCard/ProjectCard";
-import { workData } from "@/data/work";
+export default function Work() {
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(6)
+  const videoRefs = useRef([])
 
-const Work = () => {
+  const token =
+    'IGQWROVVZAmTHdhRTgtZA3VoWUh6WTZAxaDc2U2tBQ2ljRUI4bi1jejRhYVRIX0Rab3dWdFRIeDZAUOHVOT29tWld6OVhlLVROZA2I1NGlTazdoRjlIY3VSRkpzWjUtR05xX1YyRDVrM1h5VWZA6b3lGVTZAXSVphT082TWMZD'
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const apiFields =
+        'media_count,media_type,permalink,media_url,caption,children{media_type,media_url}'
+      try {
+        setLoading(true)
+        const response = await fetch(
+          `https://graph.instagram.com/me/media?fields=${apiFields}&access_token=${token}`
+        )
+        const data = await response.json()
+        console.log(data, 'data')
+
+        setPosts(data.data)
+      } catch (err) {
+        console.log('Error:', err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPosts()
+  }, [])
+
+  useEffect(() => {
+    videoRefs.current.forEach((videoRef) => {
+      if (videoRef) {
+        videoRef.play().catch((error) => {
+          console.log('Autoplay failed:', error)
+        })
+      }
+    })
+  }, [posts, visibleCount])
+
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => prevCount + 3)
+  }
+
+  const renderMedia = (media, index, caption) => {
+    return media.map(({ media_url, media_type, id }, mediaIndex) => {
+      return (
+        <div
+          key={id}
+          className="relative w-full h-[500px] rounded-lg shadow-lg overflow-hidden group"
+        >
+          {media_type === 'IMAGE' ? (
+            <Image
+              src={media_url}
+              alt={`Instagram post ${id}`}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
+            />
+          ) : media_type === 'VIDEO' ? (
+            <video
+              className="w-full h-full object-cover rounded-lg"
+              controls
+              muted
+              ref={(el) => (videoRefs.current[index * 100 + mediaIndex] = el)}
+            >
+              <source src={media_url} type="video/mp4" />
+            </video>
+          ) : null}
+          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <p className="text-white text-sm p-2">{caption}</p>
+          </div>
+        </div>
+      )
+    })
+  }
 
   return (
-    <section className="relative mb-12 xl:mb-48">
-      <div className="container mx-auto xl:flex xl:justify-between">
-        <div
-          className="max-w-[400px] mx-auto
-          xl:mx-0 text-center xl:text-left mb-12 xl:h-fit
-          flex flex-col justify-center items-center xl:justify-center
-          xl:items-start"
-        >
-          <h2
-            className="section-title 
-            mb-4"
-          >
-            ULTIMOS PROJETOS
-          </h2>
-          <p className="subtitle mb-8">
-            Explore uma vitrine diversificada de projetos recentes, desde back-end até front-end e desenvolvimento full-stack. Deslize ou clique em Todos os projetos abaixo para ver mais
-          </p>
-          <Link href="/projects" aria-label={"projectos"}>
-            <Button>Todos os projetos</Button>
-          </Link>
-        </div>
-        <div
-          className="xl:max-w-[780px]
-        top-0"
-        >
-          <Swiper
-            className="h-fit"
-            slidesPerView={1}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-            }}
-            spaceBetween={20}
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-          >
-            {workData.slice(0, 5).map((project: any, index: number) => {
-              return (
-                <SwiperSlide key={index}>
-                  <ProjectCard project={project} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Work;
+    <div className="container mx-auto px-4 py-8">
+      {loading ? (
+        <div className="loading-spinner mx-auto"></div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {posts &&
+              posts
+                .slice(0, visibleCount)
+                .map(
+                  (
+                    { media_url, media_type, permalink, id, caption, children },
+                    index
+                  ) => (
+                    <a
+                      key={id}
+                      className="block"
+                      href={permalink}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {media_type === 'CAROUSEL_ALBUM' ? (
+                        <div className="space-y-4">
+                          {renderMedia(children.data, index, caption)}
+                        </div>
+                      ) : (
+                        renderMedia(
+                          [{ media_url, media_type, id }],
+                          index,
+                          caption
+                        )
+                      )}
+                    </a>
+                  )
+                )}
+          </div>
+          {visibleCount < posts?.length && (
+            <div className="mt-8 text-center">
+              <button
+                onClick={handleShowMore}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300"
+              >
+                Ver +
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  )
+}

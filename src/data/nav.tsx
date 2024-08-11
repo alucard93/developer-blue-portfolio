@@ -1,5 +1,5 @@
 export const links = [
-    { path: "/", name: "home" },
-    { path: "/projects", name: "projetos" },
-    { path: "/contact", name: "contato" },
-];
+  { path: '#juninho', name: 'o Juninho' },
+  { path: '#minhas-lutas', name: 'Minhas lutas' },
+  { path: '#projetos', name: 'Projetos' },
+]

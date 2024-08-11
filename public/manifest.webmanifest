@@ -1,8 +1,8 @@
 {
-  "name": "Portfolio | Vagner Mengali",
-  "short_name": "Portfolio",
-  "description": "Portfólio pessoal de Vagner Mengali, mostrando seu trabalho e experiência.",
-  "author": "Vagner Mengali",
+  "name": "Eu sou Juninho | Juninho pdt",
+  "short_name": "Candidato a Vereador Juninho pdt",
+  "description": "Candidato a Vereador Juninho pdt.",
+  "author": "Marcus Vinicius",
   "lang": "pt-BR",
   "theme_color": "#7a90ff",
   "background_color": "#090a1a",
@@ -63,15 +63,14 @@
   "i18n": {
     "locales": {
       "en": {
-        "name": "Portfolio | Vagner Mengali",
-        "description": "Personal portfolio of Vagner Mengali, showcasing his work and experience."
+        "name": "Eu sou Juninho | Juninho pdt",
+        "description": "Candidato a Vereador Juninho pdt."
       }
     },
     "default_locale": "pt-BR"
   },
   "navigation": {
     "home": "/",
-    "projects": "/projects",
-    "contact": "/contact"
+    "projects": "/projects"
   }
 }

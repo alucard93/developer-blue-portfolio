@@ -1,11 +1,9 @@
-import {
-  RiAlignJustify
-} from "react-icons/ri";
+import { RiAlignJustify } from 'react-icons/ri'
 
-import Nav from "@/components/Other/Nav/Nav";
-import Logo from "@/components/Other/Logo/Logo";
-import Socials from "@/components/Other/Socials/Socials";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/Other/UI/sheet";
+import Nav from '@/components/Other/Nav/Nav'
+import Logo from '@/components/Other/Logo/Logo'
+import Socials from '@/components/Other/Socials/Socials'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/Other/UI/sheet'
 
 export const MobileNav = () => {
   return (
@@ -19,7 +17,6 @@ export const MobileNav = () => {
         h-full py-8"
         >
           <div className="flex flex-col items-center gap-y-32">
-            <Logo />
             <Nav
               containerStyles="flex flex-col items-center 
             gap-y-6"
@@ -30,5 +27,5 @@ export const MobileNav = () => {
         </div>
       </SheetContent>
     </Sheet>
-  );
-};
+  )
+}
